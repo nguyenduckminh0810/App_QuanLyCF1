@@ -2,8 +2,8 @@ package view;
 
 
 import Helper.Auth;
-import View.QuanLyBanHangJPanel;
-import View.TrangchuJPanel;
+import view.QuanLyBanHangJPanel;
+import view.TrangchuJPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

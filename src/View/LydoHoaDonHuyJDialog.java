@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import Dao.HoaDonDAO;
 import Entity.HoaDonEntity;

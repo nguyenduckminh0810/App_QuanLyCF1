@@ -7,7 +7,7 @@ package Dao;
 import Dao.ThongKeDonBan;
 import Dao.ThongKeSPBan;
 import Dao.ThongKeBieuDoNam;
-import View.MainThongKeJPanel;
+import view.MainThongKeJPanel;
 import Helper.JDBCHeper;
 import java.awt.CardLayout;
 import java.awt.Color;

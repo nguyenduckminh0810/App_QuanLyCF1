@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package view;
 
 import Dao.BanChiTietDAO;
 import Dao.BanDao;
@@ -14,6 +14,7 @@ import Entity.BanEntity;
 import Entity.BanChiTietEntity;
 import Entity.HoaDonEntity;
 import Entity.HoaDonChiTietEntity;
+import view.ChucNangTachSLSPJDialog;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
