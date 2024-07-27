@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import Dao.BanChiTietDAO;
 import Dao.BanDao;
@@ -20,6 +20,17 @@ import Entity.GiamGiaEntity;
 import Helper.PrintPDF;
 import Helper.Xdate;
 import Entity.DonViSanPhamEntity;
+import view.ChucNangGopDonJDialog;
+import view.ChucNangNhomBanJDialog;
+import view.ChucNangTachDonJDialog;
+import view.ChucNangThanhToanNhieuDonJDialog;
+import view.ChuyenBanJDialog;
+import view.GopBanJDialog;
+import view.LoaiDonJDialog;
+import view.LydoHoaDonHuyJDialog;
+import view.LydohuySanPhamJDialog;
+import view.NhapThongTinKhachHangDonShipJDialog;
+import view.NhapsoluongSanPhamJDialog;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
