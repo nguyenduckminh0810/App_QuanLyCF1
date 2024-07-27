@@ -7,7 +7,7 @@ package Services;
 
 import Entity.HoaDonEntity;
 import javax.swing.table.DefaultTableModel;
-import View.QuanLyHoaDonJPanel;
+import view.QuanLyHoaDonJPanel;
 import java.util.ArrayList;
 import java.util.List;
 import Dao.HoaDonDAO;

@@ -10,7 +10,7 @@ import Entity.HoaDonChiTietEntity;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import View.HoadonchitietJDialog;
+import view.HoadonchitietJDialog;
 import Dao.HoadonchitietDAO;
 import Entity.DonViSanPhamEntity;
 import Entity.GiamGiaChiTietEntity;
