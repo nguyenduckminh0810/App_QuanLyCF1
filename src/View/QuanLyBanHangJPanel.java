@@ -11,12 +11,10 @@ import Dao.SanPhamDao;
 import Helper.Auth;
 import Entity.BanEntity;
 import Entity.BanChiTietEntity;
-import Entity.GiamGiaChiTietEntity;
 import Entity.HoaDonEntity;
 import Entity.HoaDonChiTietEntity;
 import Entity.LoaiSanPhamEntity;
 import Entity.SanPhamEntity;
-import Entity.GiamGiaEntity;
 import Helper.PrintPDF;
 import Helper.Xdate;
 import Entity.DonViSanPhamEntity;
@@ -66,7 +64,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class QuanLyBanHangJPanel extends javax.swing.JPanel {
-
+    
     Locale vn = new Locale("vi", "VN");
 
     public QuanLyBanHangJPanel() {
@@ -85,9 +83,12 @@ public class QuanLyBanHangJPanel extends javax.swing.JPanel {
         btnThanhToan.setEnabled(false);
         setSizetblehoadon();
         setSizetblehoadonctt();
+//        int row = tblHoadon.getSelectedRow();
+
         if (Auth.isLogin() == true) {
             txthientennhanvien.setText(Auth.user.getTenNV());
         }
+
     }
 
     public void setSizetblehoadon() {
@@ -383,6 +384,7 @@ public class QuanLyBanHangJPanel extends javax.swing.JPanel {
                 "Mã HĐ", "Ngày", "Thanh toán", "Người tạo", "Tổng tiền (VND)", "Bàn", "SĐT khách hàng"
             }
         ));
+        tblHoadon.setEditingColumn(1);
         tblHoadon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tblHoadonMousePressed(evt);
@@ -725,7 +727,6 @@ public class QuanLyBanHangJPanel extends javax.swing.JPanel {
         } else if (!DAOHDCHITIET.selectByIdHD_TT1(Integer.parseInt(lblMaHoaDon.getText()), masp).isEmpty()) {
             if (JOptionPane.showConfirmDialog(this, "Đồ uống này đã có trong hóa đơn, vui lòng sửa số lượng\n WARNNING: Size không thể thay đổi!") == JOptionPane.YES_OPTION) {
                 suaSl(masp, Integer.parseInt(lblMaHoaDon.getText()));
-
             }
         } else {
             NhapsoluongSanPhamJDialog a = new NhapsoluongSanPhamJDialog(null, true, masp, Integer.parseInt(lblMaHoaDon.getText()));
@@ -773,11 +774,11 @@ public class QuanLyBanHangJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         LoaiDonJDialog ld = new LoaiDonJDialog(null, true);
         ld.setVisible(true);
-        if (ld.buttonsa) {
+        if (ld.buttonsa==1) {
             taoDon();
             filltoHoadonCTT();
             filltoDesktaiquay();
-        } else if (!ld.buttonsa) {
+        } else if (ld.buttonsa==0) {
             if (numberDesk == null) {
                 JOptionPane.showMessageDialog(this, "Chưa chọn bàn!!!!");
                 return;
@@ -800,6 +801,8 @@ public class QuanLyBanHangJPanel extends javax.swing.JPanel {
             resettrue();
             filltoHoadonCTT();
 
+        }else if(ld.buttonsa==2){
+            ld.dispose();
         }
     }//GEN-LAST:event_btnTaoDonActionPerformed
 
@@ -927,7 +930,6 @@ public class QuanLyBanHangJPanel extends javax.swing.JPanel {
         }
         filltoHoadonCTT();
         filltoDesk();
-
         filltoDesktaiquay();
     }//GEN-LAST:event_mnChuyenbanActionPerformed
 
@@ -964,11 +966,23 @@ public class QuanLyBanHangJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         try {
             if (evt.getClickCount() == 2) {
+                HoaDonDAO hdDAOEdit = new HoaDonDAO();
+                HoaDonEntity hdEdit = new HoaDonEntity();
                 int row = tblHoadon.getSelectedRow();
                 numberDesk = DAOBAN.selectIDHD(Integer.parseInt(tblHoadon.getValueAt(row, 0).toString()));
                 hoadonNumber = DAOHOADON.selectById(Integer.parseInt(tblHoadon.getValueAt(row, 0).toString()));
                 lblMaHoaDon.setText(tblHoadon.getValueAt(row, 0).toString());
                 lblBan.setText(tblHoadon.getValueAt(row, 5).toString());
+                txtTongTien.setText(tblHoadon.getValueAt(row, 4).toString());
+                hdEdit.setIdHoaDon(Integer.parseInt(tblHoadon.getValueAt(row, 0).toString()));
+                //cần tìm thành tiền qua mã hđ
+//                int idHD = Integer.parseInt(tblHoadon.getValueAt(row, 0).toString());
+//                hdEdit.setIdHoaDon(idHD);
+//                String input = tblHoadon.getValueAt(row, 4).toString();
+//                input=input.replaceAll(",", "");
+//                hdEdit.setThanhTien(Integer.parseInt(input));
+//                DAOHOADON.updateThanhtien(hdEdit);
+                txtTongTien.setText((String) tblHoadon.getValueAt(row, 4));
                 filltoTableHDCT();
                 resettrue();
                 tabs.setSelectedIndex(1);
@@ -1043,7 +1057,6 @@ public class QuanLyBanHangJPanel extends javax.swing.JPanel {
             filltoHoadonCTT();
             filltoTableHDCT();
         }
-        //mahd xóa tự tăng
     }//GEN-LAST:event_mnGopDonActionPerformed
 
     private void mnGopBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnGopBanActionPerformed
@@ -1052,7 +1065,6 @@ public class QuanLyBanHangJPanel extends javax.swing.JPanel {
         gopban.setVisible(true);
         if (gopban.status == true) {
             filltoDesk();
-
             filltoDesktaiquay();
             System.out.println("oke lam");
             filltoHoadonCTT();
@@ -1195,7 +1207,7 @@ public class QuanLyBanHangJPanel extends javax.swing.JPanel {
             if (ban.isHoatDong() != true) {
                 HoaDonEntity hd = DAOHOADON.selectById(bct.get(0).getID_HoaDon());// Lấy hóa đơn của bàn
                 if (ban.isHoatDong() == false && ban.isTrangThai() == true) {
-                    URL imagepath = classLoader.getResource("icon/Untitled-10.png");// Lấy đường dẫn đến ảnh icon
+                    URL imagepath = classLoader.getResource("icon/Untitled-1.png");// Lấy đường dẫn đến ảnh icon
                     Image imgBan = new ImageIcon(imagepath).getImage();// Tải ảnh icon
                     Icon iconBan = new ImageIcon(imgBan.getScaledInstance(90, 24, imgBan.SCALE_SMOOTH));// Tạo Icon với kích thước cụ thể để không bị quá kích thước trong pn và dễ sắp xếp
                     button.setIcon(iconBan);
@@ -1319,7 +1331,12 @@ public class QuanLyBanHangJPanel extends javax.swing.JPanel {
 
                 // Nếu bàn không hoạt động, không có trạng thái và có số điện thoại trong hóa đơn, bỏ qua và tiếp tục vòng lặp
                 if (ban.isHoatDong() == false && ban.isTrangThai() == false && hd.getSDT() != null) {
-                    continue;
+                    URL imagepath = classLoader.getResource("icon/Untitled-3.png");
+                    Image imgBan = new ImageIcon(imagepath).getImage();
+                    Icon iconBan = new ImageIcon(imgBan.getScaledInstance(90, 24, imgBan.SCALE_SMOOTH));
+                    button.setIcon(iconBan);
+                    button.setVerticalTextPosition(3);
+                    button.setHorizontalTextPosition(0);
                 } else {
                     URL imagepath = classLoader.getResource("icon/Untitled-2.png");
                     Image imgBan = new ImageIcon(imagepath).getImage();
@@ -1762,7 +1779,7 @@ public class QuanLyBanHangJPanel extends javax.swing.JPanel {
                 hd.getIdHoaDon(),
                 hd.getNgayTao(),
                 hd.isTrangThaiTT() ? "Thanh toán" : "Chưa thanh toán",
-                DAONV.selectById(hd.getIdNhanVien()).getTenNV(),
+                DAONV.selectById(Auth.user.getId_Nhanvien()).getTenNV(),
                 NumberFormat.getInstance().format(hd.getThanhTien()),
                 DAOBAN.selectIDHD(hd.getIdHoaDon()).getIdBan(),
                 hd.getSDT()

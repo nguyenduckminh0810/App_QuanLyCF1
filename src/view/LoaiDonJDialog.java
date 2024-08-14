@@ -1,9 +1,11 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package view;
+
+import Helper.Auth;
 
 /**
  *
@@ -19,9 +21,9 @@ public class LoaiDonJDialog extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
     }
-    boolean buttonsa;
+    int buttonsa;
 
-    public void buttonselect(boolean button) {
+    public void buttonselect(int button) {
         buttonsa = button;
     }
 
@@ -123,19 +125,19 @@ public class LoaiDonJDialog extends javax.swing.JDialog {
 
     private void btnDontaiQuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDontaiQuanActionPerformed
         // TODO add your handling code here:
-        buttonselect(true);
+        buttonselect(1);
         this.setVisible(false);
     }//GEN-LAST:event_btnDontaiQuanActionPerformed
 
     private void btndonmangveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndonmangveActionPerformed
         // TODO add your handling code here:
-        buttonselect(false);
+        buttonselect(0);
         this.setVisible(false);
     }//GEN-LAST:event_btndonmangveActionPerformed
-    boolean exit = false;
+
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
         // TODO add your handling code here:
-        exit = true;
+        buttonselect(2);
         this.setVisible(false);
     }//GEN-LAST:event_lblExitMouseClicked
 

@@ -29,6 +29,7 @@ public class SuaSoLuongSanPhamHDCTJDialog extends javax.swing.JDialog {
         MAHOADON = MAHD;
 
     }
+    HoadonchitietDAO hdctUpdate = new HoadonchitietDAO();
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -142,7 +143,7 @@ public class SuaSoLuongSanPhamHDCTJDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-SanPhamDao DAOSP = new SanPhamDao();
+    SanPhamDao DAOSP = new SanPhamDao();
     HoadonchitietDAO HDCT = new HoadonchitietDAO();
     private void btnXacnhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacnhanActionPerformed
         // TODO add your handling code here:
@@ -157,10 +158,14 @@ SanPhamDao DAOSP = new SanPhamDao();
         HoaDonChiTietEntity hdct = HDCT.selectById(MAHOADON, MASP);
         hdct.setID_Hoadon(MAHOADON);
         hdct.setID_SanPHam(MASP);
-        int slnew = hdct.getSoluong() + Integer.parseInt(txtSoluongSP.getText());
+        int slnew = Integer.parseInt(txtSoluongSP.getText());
         hdct.setSoluong(slnew);
         SanPhamEntity sp = DAOSP.selectID(MASP);
-
+        int i = JOptionPane.showConfirmDialog(rootPane, "Bạn có muốn sửa hay không");
+        if (i == 0) {
+            hdctUpdate.update_SL(hdct);
+            dispose();
+        }
     }//GEN-LAST:event_btnXacnhanActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -234,7 +239,6 @@ SanPhamDao DAOSP = new SanPhamDao();
     // End of variables declaration//GEN-END:variables
 public boolean checknumber() {
         try {
-            int i = Integer.parseInt(txtSoluongSP.getText());
             if (txtSoluongSP.getText().matches("[^0-9]")) {
                 JOptionPane.showMessageDialog(this, "Không được nhập ký tự đặc biệt");
                 return true;

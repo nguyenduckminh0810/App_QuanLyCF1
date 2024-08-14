@@ -5,7 +5,6 @@
  */
 package Services;
 
-import Entity.GiamGiaEntity;
 import Entity.HoaDonChiTietEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +12,8 @@ import javax.swing.table.DefaultTableModel;
 import view.HoadonchitietJDialog;
 import Dao.HoadonchitietDAO;
 import Entity.DonViSanPhamEntity;
-import Entity.GiamGiaChiTietEntity;
-import Entity.HoaDonEntity;
 import Dao.*;
 import Entity.SanPhamEntity;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.text.NumberFormat;
 import java.util.Locale;
 

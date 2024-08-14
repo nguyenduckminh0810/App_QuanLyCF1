@@ -3,6 +3,7 @@ package view;
 import Dao.BanChiTietDAO;
 import Dao.BanDao;
 import Dao.HoaDonDAO;
+import Dao.HoadonchitietDAO;
 import Entity.BanEntity;
 import Entity.BanChiTietEntity;
 import Entity.HoaDonEntity;
@@ -395,7 +396,7 @@ BanDao DAOBAN = new BanDao();
             model.addElement(hoadon.getIdHoaDon());
             System.out.println("d");
         }
-        System.out.println("a");
+
     }
 
     public void resetList() {

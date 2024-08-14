@@ -303,7 +303,7 @@ public class MainThongKeJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Tên Nhân Viên", "Số Lượng Đơn Hủy", "Số Lượng Sản Phẩm Hủy"
+                "Mã Nhân Viên", "Số Lượng Đơn Hủy", "Số Lượng Sản Phẩm Hủy"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -480,7 +480,7 @@ public class MainThongKeJPanel extends javax.swing.JPanel {
         // Tạo đối tượng Message để soạn thảo email
         Message message = new MimeMessage(s);
         try {
-            message.setFrom(new InternetAddress("upcoffee.forwork@hotmail.com")); // Địa chỉ email gửi
+            message.setFrom(new InternetAddress("testquanlycafeda@gmail.com")); // Địa chỉ email gửi
             message.setRecipients(
                     Message.RecipientType.TO,
                     InternetAddress.parse(mail) // Địa chỉ email người nhận

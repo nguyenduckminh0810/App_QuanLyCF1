@@ -147,7 +147,6 @@ boolean status = true;
                 hoadoncp.setTongGia(thanhten);
                 hoadoncp.setGhiChu("Gộp từ đơn: " + hdchitietcu.getID_Hoadon() + ", SL: " + hdchitietcu.getSoluong());
                 DAOhdct.update_SL(hoadoncp);
-                //tiendonmoi += hoadoncp.getTongGia()+hdchitietcu.getTongGia();
                 DAOhdct.deletehoadonct(hdchitietcu.getID_Hoadon(), hdchitietcu.getID_SanPHam());
             } else {
                 System.out.println("a");

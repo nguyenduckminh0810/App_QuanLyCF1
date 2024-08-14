@@ -103,11 +103,17 @@ public class PrintPDF {
             for (int i = 0; i < model.getRowCount(); i++) {
                 if (mahd == Integer.parseInt(model.getValueAt(i, 0).toString())) {
                     PdfPCell c5 = new PdfPCell(new Phrase(model.getValueAt(i, 2).toString(), f2));
+                   
+                    String tongtien1=model.getValueAt(i, 6).toString();
+                    tongtien1=tongtien1.replaceAll(",", "");
+                    int soLuong = Integer.parseInt(model.getValueAt(i, 3).toString());
+                    int tongTien = Integer.parseInt(tongtien1);
+                    String gia = tongTien / soLuong + "";
                     t.addCell(c5);
                     t.addCell(model.getValueAt(i, 3).toString());
+                    t.addCell(gia);
                     t.addCell(model.getValueAt(i, 4).toString());
-                    t.addCell(model.getValueAt(i, 5).toString());
-                    t.addCell(model.getValueAt(i, 7).toString());
+                    t.addCell(model.getValueAt(i, 6).toString());
                 }
             }
 

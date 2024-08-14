@@ -175,6 +175,7 @@ public class ChucNangNhomBanJDialog extends javax.swing.JDialog {
         DAOban.updateHoatDong(mabangop);
         DAObanct.insert(banchitiet);
         filltocbo();
+        this.dispose();
     }//GEN-LAST:event_btngopActionPerformed
 
     /**
